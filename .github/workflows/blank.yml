@@ -1,0 +1,45 @@
+Random random = new Random();
+            int numeroOculto = random.Next(1, 101); // Gera um número oculto entre 1 e 100
+            Console.WriteLine("Bem-vindo ao Jogo 'Acertou: Perdeu!");
+
+            Console.Write("Quantos jogadores irão participar? ");
+            int numeroJogadores = int.Parse(Console.ReadLine());
+
+            int minRange = 1;
+            int maxRange = 100;
+            bool acertou = false;
+
+            while (!acertou)
+            {
+                for (int i = 1; i <= numeroJogadores; i++)
+                {
+                    Console.Write($"Jogador {i}, tente adivinhar o número oculto (entre {minRange} e {maxRange}): ");
+                    int tentativa = int.Parse(Console.ReadLine());
+
+                    if (tentativa == numeroOculto)
+                    {
+                        Console.WriteLine("Parabéns! Você acertou o número oculto. Você Perdeu!!");
+                        acertou = true;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Que pena! Você errou.");
+                        if (tentativa > numeroOculto && tentativa < maxRange)
+                        {
+                            maxRange = tentativa;
+                        }
+                        else if (tentativa < numeroOculto && tentativa > minRange)
+                        {
+                            minRange = tentativa;
+                        }
+                        Console.WriteLine($"Agora o intervalo é de {minRange} a {maxRange}.");
+                    }
+                }
+            }
+
+            Console.WriteLine($"O número oculto era: {numeroOculto}");
+        }
+    }
+}
+
